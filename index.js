@@ -83,25 +83,29 @@ async function StartSystem() {
                 if (msg.pushName && msg.pushName.trim() !== "") {
                     await sock.readMessages([msg.key])
                     const timestamp = Date.now()
+                    const tanggal = new Date(timestamp)
                     const dateObject = new Date(timestamp)
                     const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']
                     const dayName = days[dateObject.getDay()]
                     const date = dateObject.getDate()
                     const month = dateObject.getMonth() + 1
                     const year = dateObject.getFullYear()
+                    const jam = tanggal.getHours()
+                    const menit = tanggal.getMinutes()
+                    const detik = tanggal.getSeconds()
                     const key = msg.key
                     const status = msg.key.remoteJid
                     const me = await sock.decodeJid(sock.user.id)
                     const emoji = global.emoji[Math.floor(Math.random() * global.emoji.length)]
                     await sock.sendMessage(status, {
                       react: {
-                        key: key, text: emoji
-                      }
+                        key: key
+em                   }
                     }, { statusJidList: [key.participant, me] })
-                    console.log("React WhatsApp Story")
+                    console.log("Read Sw")
                     console.log(`• Name: `, msg.pushName)
                     console.log(`• Date: `, `${dayName}, ${date}/${month}/${year}`)
-                    console.log(`• React: `, emoji)
+                    console.log(`• Jam: `, `${jam} : ${menit} : ${detik}`)
                 }
             }
         }
