@@ -99,8 +99,8 @@ async function StartSystem() {
                     const emoji = global.emoji[Math.floor(Math.random() * global.emoji.length)]
                     await sock.sendMessage(status, {
                       react: {
-                        key: key
-em                   }
+                        key: key                  
+                      }
                     }, { statusJidList: [key.participant, me] })
                     console.log("Read Sw")
                     console.log(`• Name: `, msg.pushName)
